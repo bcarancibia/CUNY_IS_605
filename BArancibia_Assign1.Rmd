@@ -1,0 +1,57 @@
+---
+title: "Homework Assignment 1"
+author: "Ben Arancibia"
+date: "September 7, 2014"
+output: html_document
+---
+Problem Set 1
+(1) Calculate the dot product of u.v
+```{r}
+u = matrix(c(0.5, 0.5), nrow=2, ncol=1)
+u
+
+v = matrix(c(3, -4), nrow=2, ncol=1)
+v
+
+u*v
+
+1.5 + -2.0
+
+
+```
+
+Dot Product = -0.5
+
+(2) What are the lengths of u and v?
+Norm of a vector is ||vector||
+```{r}
+norm_u <- sqrt(sum(u*u))
+
+norm_v <- sqrt(sum(v*v))
+
+norm_u
+
+norm_v
+
+```
+
+(3) What is the linear combination: 3u-2v?
+Linear combination is:
+```{r}
+(3*u) - (2*v)
+```
+
+(4) What's the angle between u and v?
+Dot-product between two vectors is proportional to their lengths and to the cosine of the angle between them. Two unit vectors, then the dot product between them is the 
+cosine of the angle between them. 
+
+Angle = Cosine(dotproduct) /||u||*||v||
+```{r}
+angle <- acos( sum(u*v) / ( sqrt(sum(u * u)) * sqrt(sum(v * v)) ) )
+
+angle
+```
+
+
+Problem Set 2
+
