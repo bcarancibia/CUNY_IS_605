@@ -54,4 +54,26 @@ angle
 
 
 Problem Set 2
+There are two ways to solve this problem. You can use the solve function that is part of R packages or you can create your own function.
+
+Ax = b
+A*b = x
+ab = x
+
+To use the solve function you need to fill in the matrix a multiplied by b into function and column numbers.
+
+formula you could use to calculate
+A <- matrix(c(), ncol=)
+b <- matrix(c(), ncol=)
+x <- solve(A) %x% b
+
+```{r}
+#Example#
+
+A <- matrix(c(1, 2, -1, 1, -1, -2, 3, 5, 4), ncol=3)  ####fill in matrix
+b <- matrix (c(1, 2, 6), ncol=1)  ####fill in matrix
+x <- solve (A) %*% b
+x
+
+```
 
