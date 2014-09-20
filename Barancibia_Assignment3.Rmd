@@ -4,8 +4,10 @@ author: "Ben Arancibia"
 date: "September 20, 2014"
 output: html_document
 ---
-require(Matrix)
-require(pracma) #math functions package, pretty handy
+```{r, include=FALSE}
+library(pracma)
+library(Matrix)#matrix
+```
 
 #Problem Set 1
 ###Question 1
@@ -18,8 +20,60 @@ Given an mxn matrix where m > n then the maximum rank is n, you cannot have more
 The rank of matrix B is 1.
 ```{r}
 ##### Question 3 #####
-matrix_q3 <- matrix(c(1,2,1,3,6,3,2,4,2), byrow=T, nrow=3)
-rankMatrix(matrix_q3)[1]
+m2 <- matrix(c(1,2,1,
+               3,6,3,
+               2,4,2), byrow=T, nrow=3)
+rankMatrix(m2)[1]
+rref(m2)
 ```
 
 #Problem set 2
+###Question 1
+```{r}
+q1 <- matrix(c(1,2,3,0,4,5,0,0,6), byrow=T, nrow=3)
+q1
+
+```
+
+```{r}
+# matrix is in upper triangular form, eigenvalues are simply the diagonals: 6, 4, 1
+eigen(q1)$values
+eigen(q1)$vectors
+```
+
+Manual Computation \n
+
+$Av = \lambda v$ \n
+
+$(A - \lambda I)v = 0$ \n
+
+Matrix determinant $A - \lambda I=0$ \n
+
+Begin computation
+$$det \left( \begin{pmatrix}1&2&3\\0&4&5 \\ 0&0&6 \end{pmatrix} - \begin{pmatrix}\lambda&0&0\\0&\lambda&0\\0&0&\lambda\end{pmatrix}\right)=det\begin{pmatrix}1 - \lambda&2&3\\0&4 - \lambda&5 \\ 0&0&6 - \lambda \end{pmatrix}$$
+$$ (1 - \lambda)[(4-\lambda)(6-\lambda)-(5)(0)]-2[(0)(6-\lambda)-(5)(0)]-3[(0)(0) - (4 - \lambda)(0)]=0 $$ Which gives us $6,4,1$ \n
+
+Find $AX=0$ \n
+
+Solve for eigenvalue 6:
+$$\begin{pmatrix}1 - 6&2&3\\0&4-6&5 \\ 0&0&6-6 \end{pmatrix}=\begin{pmatrix}-5&2&3\\0&-2&5 \\ 0&0&0 \end{pmatrix}$$ \n
+
+Solve eigenvector: \n
+
+$$\begin{pmatrix}-5&2&3\\0&-2&5 \\ 0&0&0 \end{pmatrix}\begin{pmatrix}v_1\\v_2\\v_3\end{pmatrix}=\begin{pmatrix}0\\0\\0\end{pmatrix}$$
+$$-5v_1 + 2v_2 +3v_3=0$$
+$$0v_1 - 2v_2 + 5v_3 = 0$$
+$$0v_1 + 0v_2 + 0v_3 = 0$$ \n
+
+$$2v_2 = 5v_3 \sim v_2 =\frac{5}{2}v_3$$\n
+
+$$ -5v_1 + 2(\frac{5}{2}v_3) +3v_3 = -5v_1+8v_3 \sim v_1 = \frac{8}{5} v_3 $$ \n
+
+Eigenvector of eigenvalue 6: $$\begin{pmatrix}\frac{8}{5}&\frac{5}{2}&1\end{pmatrix}$$ \n
+
+Solve for eigenvalue 4 \n
+$$\begin{pmatrix}-3&2&3\\0&0&5\\0&0&2\end{pmatrix}$$ Eigenvector of eigenvalue 4: $$\begin{pmatrix}\frac{2}{3} & 1 & 0\end{pmatrix}$$ \n
+
+Solve for eigenvalue 1:\n
+
+$$\begin{pmatrix}0&2&3\\0&3&5\\0&0&5\end{pmatrix}$$ Eigenvector of eigenvalue 1: $$\begin{pmatrix}1&0&0\end{pmatrix}$$
