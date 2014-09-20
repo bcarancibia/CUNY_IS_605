@@ -1,0 +1,53 @@
+---
+title: "Assignment 2"
+author: "Ben Arancibia"
+date: "September 20, 2014"
+output: html_document
+---
+#Problem Set 1
+
+###Question 1
+(A^T)xA != Ax(A^T) in general. If A is not a square matrix but is m x n matrix then Ax(A^T) would be an mxm matrix. For the (A^T)xA matrix this would be nxn matrix.  
+
+###Question 2
+For a special type of square matrix A, (A^T)*A = A(A^T). This special type of matrix is called a "normal matrix" where (A^T) is a conjugate transpose (quick reference: http://en.wikipedia.org/wiki/Normal_matrix) of A.
+$$A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$$
+$$AA^{T} = \begin{pmatrix}a&b\\c&d\end{pmatrix}\begin{pmatrix}a&c\\b&d\end{pmatrix}= \begin{pmatrix}a^{2}+b^{2} & ac+bd \\ ac+bd & c^{2}+d^{2}\end{pmatrix}$$
+$$A^{T}A = \begin{pmatrix}a&c\\b&d\end{pmatrix}\begin{pmatrix}a&b\\c&d\end{pmatrix}=\begin{pmatrix}a^{2} + c^{2}&ab+cd \\ ab+cd & c^{2}+d^{2}\end{pmatrix}$$
+
+$b^{2}=c^{2}$ must be equal. A diagonal matrix stays the same during a transpose. So if the diagonal matrix is an identity then (A^T)*A = A(A^T).
+
+
+####Problem Set 2
+R function to factorize a square matrix A into LU
+Assumptions:
+1) A is less than 5x5
+2) do not permutate rows of A
+
+```{r}
+LU <- function(input){
+  if(dim(input)[1] != dim(input)[2]){
+    stop("You must input a square matrix")
+  }
+  L <- diag(nrow(input)) 
+  for (i in 2:nrow(input)){ 
+    for (j in 1:(i-1)){ 
+      if (input[i,j] == 0){
+        stop("No elements in pivot location")
+      }
+      L[i,j] <- (input[i,j]/input[j,j]) 
+      input[i,] <- input[i,] - ((input[i,j]/input[j,j]) * input[j,]) 
+
+    }
+  }
+  print("Lower:")
+  print(L)
+  print("Upper:")
+  print(input)
+}
+
+matrix1 <- matrix(c(4,6,3,3), byrow=T, nrow=2)
+LU(matrix1)
+matrix2 <- matrix(c(2,2,4,2,3,1,1,-2,-2), byrow=T, nrow=3)
+LU(matrix2)
+
