@@ -23,9 +23,9 @@ So let's create a definition for popular movies. For the purpose of this exercis
 
 This will take the most popular movies (movies with most votes), then use plyr to take it and look which are the most popular movies over the years and combine it with what is best. \n
 
-**So what is best?**
-Best is defined differently by different people looking at the data depending on the user group. For example, best could be defined as movies with the most rewatchability. Also, best could be defined as what is the best movie in relation to the budget of the movie for movie studios. For example to a money conscious studio, a movie that is rated a 10 and wins and Oscar and only costs 5 million dollars as compared to a movie that is rated a 10 that cost 100 million dollars. For this exercise we are going to look at best as a high rating. \n
+**So what is "best"?**\n
 
+Best is defined differently by different people looking at the data depending on the user group. For example, best could be defined as movies with the most rewatchability. Also, best could be defined as what is the best movie in relation to the budget of the movie for movie studios. For example to a money conscious studio, a movie that is rated a 10 and wins and Oscar and only costs 5 million dollars as compared to a movie that is rated a 10 that cost 100 million dollars. For this exercise we are going to look at best as a high rating. \n
 
 ```{r}
 subset_movies <- subset(movies, votes!=0)
@@ -74,6 +74,31 @@ p <- ggplot(m_year_average, aes(year, Mean_Rating))+geom_point()
 
 p1 <- p + xlab("Year") + ylab("Mean Rating Per Year") + ggtitle("Movie Popularity Rating By Release Year")
 
+p2 <- p1+geom_smooth()
+
 print(p1)
 
+print(p2)
 ```
+
+**So what year was the best popular movie**\n
+
+Taking a look at the following two plots:
+```{r}
+ggplot(final_output, aes(x = year, y = count)) + geom_point()
+
+print(p2)
+``` 
+
+\n
+You can see the popularity votes in the first plot shows the most votes were in the 2000s. In the second plot you see that the highest rated movies are in the 1920s. Based on the two plots, I think that the best popular movies on record were made in the 1920s and the late 2000s.
+
+
+
+
+
+
+
+
+
+
