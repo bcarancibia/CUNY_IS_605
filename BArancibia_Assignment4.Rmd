@@ -1,0 +1,24 @@
+---
+title: "Assignment 4"
+author: "Ben Arancibia"
+date: "September 27, 2014"
+output: html_document
+---
+
+##Problem Set 1
+###Question 1 \n
+
+We will verify that Singular Value Decomposition and eigenvalues are related. \n
+
+Given a 3x2 martix $A$
+```{r}
+A <- matrix(c(1,2,3,
+              -1,0,4), byrow=T, ncol=3)
+
+A
+```
+\n
+
+We will use R to compute $X$ = $AA^T$ and $Y$ = $A^TA$ and show the eigenvalues and eigenvectors of $X$ and $Y$.\n
+
+
