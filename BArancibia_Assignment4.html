@@ -105,7 +105,46 @@ Y</code></pre>
 ## [1,] -0.01857 -0.6728  0.7396
 ## [2,]  0.25500 -0.7185 -0.6472
 ## [3,]  0.96676  0.1766  0.1849</code></pre>
+<p></p>
+<p>Single Value Decomposition (SVD) of <span class="math">\(A\)</span>. Singular values vector:</p>
+<pre class="r"><code>svd(A)$d</code></pre>
+<pre><code>## [1] 5.158 2.097</code></pre>
+<p></p>
+<p>Left Singular vector:</p>
+<pre class="r"><code>svd(A)$u</code></pre>
+<pre><code>##         [,1]    [,2]
+## [1,] -0.6576 -0.7534
+## [2,] -0.7534  0.6576</code></pre>
+<p></p>
+<p>Right Singular vector:</p>
+<pre class="r"><code>svd(A)$v</code></pre>
+<pre><code>##          [,1]    [,2]
+## [1,]  0.01857 -0.6728
+## [2,] -0.25500 -0.7185
+## [3,] -0.96676  0.1766</code></pre>
+<p></p>
+<p><span class="math">\(X\)</span> and <span class="math">\(Y\)</span> eigens are equal</p>
+<pre class="r"><code>all.equal(eigen(X)$values, eigen(Y)$values[c(1,2)])</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p></p>
+<p>Showing that the SVD vectors are equal:</p>
+<pre class="r"><code>all.equal(svd(A)$v[,1], (eigen(Y)$vectors[,1]))</code></pre>
+<pre><code>## [1] &quot;Mean relative difference: 2&quot;</code></pre>
+<pre class="r"><code>all.equal(svd(A)$v[,2], (eigen(Y)$vectors[,2]))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>all.equal(svd(A)$u[,1], (eigen(X)$vectors[,1]))</code></pre>
+<pre><code>## [1] &quot;Mean relative difference: 2&quot;</code></pre>
+<pre class="r"><code>all.equal(svd(A)$u[,2], (eigen(X)$vectors[,2]))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p>For some reason they are not equal….unless you reverse the signs. Why? # Need to ask professor about this </p>
+<pre class="r"><code>all.equal(svd(A)$v[,1], (-1 * eigen(Y)$vectors[,1]))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>all.equal(svd(A)$u[,1], (-1 * eigen(X)$vectors[,1]))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 </div>
+</div>
+<div id="problem-set-2" class="section level2">
+<h2>Problem Set 2</h2>
 </div>
 
 

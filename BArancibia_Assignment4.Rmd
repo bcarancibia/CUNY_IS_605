@@ -47,4 +47,47 @@ Eigenvalues and Eigenvectors for $Y$
 eigen(Y)$values
 eigen(Y)$vectors
 ```
+\n
 
+Single Value Decomposition (SVD) of $A$. Singular values vector:
+```{r}
+svd(A)$d
+```
+\n
+
+Left Singular vector:
+```{r}
+svd(A)$u
+```
+\n
+
+Right Singular vector:
+```{r}
+svd(A)$v
+```
+\n
+
+$X$ and $Y$ eigens are equal
+```{r}
+all.equal(eigen(X)$values, eigen(Y)$values[c(1,2)])
+```
+\n
+
+Showing that the SVD vectors are equal:
+```{r}
+all.equal(svd(A)$v[,1], (eigen(Y)$vectors[,1]))
+all.equal(svd(A)$v[,2], (eigen(Y)$vectors[,2]))
+all.equal(svd(A)$u[,1], (eigen(X)$vectors[,1]))
+all.equal(svd(A)$u[,2], (eigen(X)$vectors[,2]))
+```
+\n
+For some reason they are not equal....unless you reverse the signs. Why? \n
+# Need to ask professor about this \n
+
+```{r}
+all.equal(svd(A)$v[,1], (-1 * eigen(Y)$vectors[,1]))
+all.equal(svd(A)$u[,1], (-1 * eigen(X)$vectors[,1]))
+```
+
+##Problem Set 2
+###Question 1
