@@ -21,4 +21,30 @@ A
 
 We will use R to compute $X$ = $AA^T$ and $Y$ = $A^TA$ and show the eigenvalues and eigenvectors of $X$ and $Y$.\n
 
+$X$ first:
+```{r}
+X <- A %*% t(A)
+X
+```
+\n
+
+Now $Y$:
+```{r}
+Y <- t(A) %*% A
+Y
+```
+\n
+
+Eigenvalues and eigenvectors for $X$
+```{r}
+eigen(X)$values
+eigen(X)$vectors
+```
+\n
+
+Eigenvalues and Eigenvectors for $Y$
+```{r}
+eigen(Y)$values
+eigen(Y)$vectors
+```
 
