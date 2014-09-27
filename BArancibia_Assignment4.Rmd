@@ -67,6 +67,7 @@ svd(A)$v
 ```
 \n
 
+
 $X$ and $Y$ eigens are equal
 ```{r}
 all.equal(eigen(X)$values, eigen(Y)$values[c(1,2)])
@@ -91,3 +92,43 @@ all.equal(svd(A)$u[,1], (-1 * eigen(X)$vectors[,1]))
 
 ##Problem Set 2
 ###Question 1
+
+Writing a function computer inverse of well-conditioned full-rank square matrix using co-factors.\n
+Use the following signature:
+\n
+B = myinverse(A)
+\n
+$A$ is a matrix and $B$ is its inverse and $A$x$B$ = $I$\n
+# for this to work, matrix needs to be invertible. did not build in test for invertible matrix, would do that in the future assignment \n
+
+function:
+```{r}
+myinverse <- function(m){
+  x <- matrix(ncol=ncol(m), nrow=nrow(m))
+  for (i in 1:nrow(m)){
+    for (j in 1:ncol(m)){
+      x[i,j] <- (-1)^(i+j) * det(m[-i,-j])
+    }
+  }
+  return(t(x)/det(m))
+}
+
+```
+\n
+
+test invertible matrix (got invertible matrix from http://www.purplemath.com/modules/mtrxinvr2.htm):
+```{r}
+A <- matrix(c(1,2,3,
+              0,1,4,
+              5,6,0), nrow=3, byrow=T)
+B <- myinverse(A)
+B
+```
+
+test $A$$B$=$I$:
+```{r}
+I <- diag(3)
+all.equal(A %*% B, diag(3))
+all.equal(B, solve(A))
+```
+

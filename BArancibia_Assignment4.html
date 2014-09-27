@@ -62,7 +62,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="problem-set-1" class="section level2">
 <h2>Problem Set 1</h2>
 <div id="question-1" class="section level3">
-<h3>Question 1 </h3>
+<h3>Question 1 ———————————————————————————————————————–</h3>
 <p>We will verify that Singular Value Decomposition and eigenvalues are related. </p>
 <p>Given a 3x2 martix <span class="math">\(A\)</span></p>
 <pre class="r"><code>A &lt;- matrix(c(1,2,3,
@@ -145,6 +145,37 @@ Y</code></pre>
 </div>
 <div id="problem-set-2" class="section level2">
 <h2>Problem Set 2</h2>
+<div id="question-1-1" class="section level3">
+<h3>Question 1</h3>
+<p>Writing a function computer inverse of well-conditioned full-rank square matrix using co-factors.Use the following signature: B = myinverse(A) <span class="math">\(A\)</span> is a matrix and <span class="math">\(B\)</span> is its inverse and <span class="math">\(A\)</span>x<span class="math">\(B\)</span> = <span class="math">\(I\)</span># for this to work, matrix needs to be invertible. did not build in test for invertible matrix, would do that in the future assignment </p>
+<p>function:</p>
+<pre class="r"><code>myinverse &lt;- function(m){
+  x &lt;- matrix(ncol=ncol(m), nrow=nrow(m))
+  for (i in 1:nrow(m)){
+    for (j in 1:ncol(m)){
+      x[i,j] &lt;- (-1)^(i+j) * det(m[-i,-j])
+    }
+  }
+  return(t(x)/det(m))
+}</code></pre>
+<p></p>
+<p>test invertible matrix (got invertible matrix from <a href="http://www.purplemath.com/modules/mtrxinvr2.htm">http://www.purplemath.com/modules/mtrxinvr2.htm</a>):</p>
+<pre class="r"><code>A &lt;- matrix(c(1,2,3,
+              0,1,4,
+              5,6,0), nrow=3, byrow=T)
+B &lt;- myinverse(A)
+B</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]  -24   18    5
+## [2,]   20  -15   -4
+## [3,]   -5    4    1</code></pre>
+<p>test <span class="math">\(A\)</span><span class="math">\(B\)</span>=<span class="math">\(I\)</span>:</p>
+<pre class="r"><code>I &lt;- diag(3)
+all.equal(A %*% B, diag(3))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>all.equal(B, solve(A))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
 </div>
 
 
