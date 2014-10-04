@@ -28,3 +28,60 @@ Compute $A^T$$b$
 ```{r}
 (Atb <- t(A) %*% b)
 ```
+
+Solve for $\hat{x}$ by doing $A^T$$A$^{-1} divided by $A^T$$b$
+```{r}
+(solve(AtA) %*% Atb)
+```
+
+Compute the error $e$ give the change in the variable which is now $p$
+```{r}
+p <- c(1, 5, 13, 17)
+(Atp <- t(A) %*% p)
+(x_hat <- solve(AtA) %*% Atp)
+(e <- p - A %*% x_hat)
+```
+
+Find the error e=b-p
+```{r}
+(e = b - p)
+```
+
+Check if e is orthogonal to P and each col of A
+```{r}
+all.equal(e %*% p, p %*% e)
+all.equal(e %*% A[,1], A[,1] %*% e)
+all.equal(e %*% A[,2], A[,2] %*% e)
+```
+
+__*Question 2*__
+Take the auto-mpg data extracts to an $A$ matric from the first 4 columns and $b$ vector from the fifth (*mpg*) column.
+Read in the table.
+__Note you will need to change your Working Directory to your local for this to work.__
+```{r}
+setwd('/users/bcarancibia/CUNY_IS_605')
+data <- read.table("auto-mpg.data")
+```
+
+Name the columns
+```{r}
+names(data) <- c("displacement", "horsepower", "weight", "acceleration", "mpg")
+```
+
+Divide up the data into two matrices so that it is easier to manipulate.
+```{r}
+A <- as.matrix(data[,1:4])
+b <- as.matrix(data[,5])
+```
+
+Use a least squares methodology and then calculate the $\hat{x}$ in order to find the best fitting equation.
+```{r}
+AtA <- t(A) %*% A
+Atb <- t(A) %*% b
+(x_hat <- solve(AtA) %*% Atb)
+```
+
+Find the error in prediction
+```{r}
+(e <- sqrt(sum(((A %*% x_hat) - b)^2)))
+```
