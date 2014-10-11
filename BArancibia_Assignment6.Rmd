@@ -6,7 +6,31 @@ output: pdf_document
 ---
 
 __*Problem Set 1*__
-*1*
-When you roll a fair die there are $6^3$ which is 216 possible outcomes.
 
-*2*
+__1__
+When you roll a fair die there are $6^3$ which is 216 possible outcomes. 
+
+__2__
+The probability of getting a sum total of 3 when you roll a die two times is first $(1,2)$ then $(2,1)$.
+So there are $2/36$ changes of getting it, which reduces to $1/18$.
+
+__3__
+If you are in a room of 25 people the probability that two of them have the same birthday is:
+$$\frac{365!}{365^{25}(340)!}$$
+This is based on the assumption that all birthdays are equally as likely and equal to $1/365$.
+If you add 25 people so that are 50 people in the room
+$$\frac{365!}{365^{50}(315)!}$$
+
+Results:
+```{r}
+birthday <- function(n){
+   return (1 - (prod(365:((365-n)+1))/(365^n)))
+}
+
+birthday(25)
+birthday(50)
+```
+
+__*Problem Set 2*__
+
+
