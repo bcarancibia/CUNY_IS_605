@@ -22,20 +22,33 @@ If you add 25 people so that are 50 people in the room
 $$\frac{365!}{365^{50}(315)!}$$
 
 Results:
-```{r}
+
+```r
 birthday <- function(n){
    return (1 - (prod(365:((365-n)+1))/(365^n)))
 }
 
 birthday(25)
+```
+
+```
+## [1] 0.5687
+```
+
+```r
 birthday(50)
+```
+
+```
+## [1] 0.9704
 ```
 
 __*Problem Set 2*__
 
 Write a program to take a document in English and print out the estimated probabilities for each of the words that occur in that document. Your program should take in a file containing a large document and write out the probabilities of each of the words that appear in that document.
 
-```{r}
+
+```r
 setwd("/users/bcarancibia/CUNY_IS_605/assign6") #YOU WILL NEED TO CHANGE THIS
 
 file <- "assign6.sample.txt"
@@ -48,38 +61,22 @@ probability_words <- function(file){
   probability <- table(words) / length(unique(words))
   return (probability) #answer
 }
-final <- probability_words(file) #all probability 
+final <- probability_words(file) #all probability IF YOU WANT TO SEE ALL PROBABILITY UNCOMMENT OUT THIS LINE
 
 head(final) 
+```
 
+```
+## words
+##       10      100       18     1942       20     2009 
+## 0.003448 0.001724 0.001724 0.001724 0.001724 0.001724
+```
+
+```r
 #final #IF YOU WANT TO SEE ALL PROBABILITY UNCOMMENT OUT THIS LINE
 ```
 
 Extend your program to calculate the probability of two words occurring adjacent to each other. It should take in a document, and two words (say the and for) and compute the probability of each of the words occurring in the document and the joint probability of both of them occurring together. The order of the two words is not important.
 
-```{r}
-#Use a lot of the same code
-setwd("/users/bcarancibia/CUNY_IS_605/assign6") #YOU WILL NEED TO CHANGE THIS
 
-file <- "assign6.sample.txt"
-probability_words_pair <- function(file){
-  file_read <- readChar(file, file.info(file)$size, useBytes=F)
-  Encoding(file_read) <- "UTF-8" #allows me to account for aposotrophe
-  words <- (strsplit(file_read, "\\W"))[[1]]
-  words <- subset(words, words != "") #issue with regex, i think fixed.....
-  words <- tolower(words) #lower case
-  vector_pairs <- c() #create vector and then iterate through document....
-  for (i in 1:(length(words)-1)){
-    vector_pairs[i] <- paste(words[i], words[i+1], sep=" ")
-  }
-  probability_pair<- table(vector_pairs) / length(unique(vector_pairs))
-  return(probability_pair)
-}
-
-final2 <- probability_words_pair(file)
-
-head(final2)
-
-#final2 #IF YOU WANT TO SEE ALL PROBABILITY UNCOMMENT OUT THIS LINE
-```
 
