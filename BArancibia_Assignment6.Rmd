@@ -12,7 +12,7 @@ When you roll a fair die there are $6^3$ which is 216 possible outcomes.
 
 __2__
 The probability of getting a sum total of 3 when you roll a die two times is first $(1,2)$ then $(2,1)$.
-So there are $2/36$ changes of getting it, which reduces to $1/18$.
+So there are two combinations out of 36 ($2/36$) changes of getting it, which reduces to $1/18$.
 
 __3__
 If you are in a room of 25 people the probability that two of them have the same birthday is:
