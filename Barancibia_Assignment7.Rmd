@@ -2,21 +2,41 @@
 title: "Week 7 Problem Set"
 author: "Ben Arancibia"
 date: "October 18, 2014"
-output: pdf_document
+output: html_document
 ---
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+__**Problem Set 1**__
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
+A function to compute the expected value and standard deviation of an array of values.
 ```{r}
-summary(cars)
+m <- array(runif(100),dim=c(10,10))
+m
+
+expected_value <- function(array){
+  sum(array)/(dim(array)*dim(array))
+}
+expected_value(m)
+mean(m)
+
+rows <- dim(m)[1]
+cols <- dim(m)[2]
+
+sd_array <- function(array){
+  for (i in seq(rows)) {
+    for (j in seq(cols)){
+      result[i,j] <- mean(((mean(m))-[i,j])^2)
+    }
+  }
+}
+
+
+#result <- matrix(0, nrow=rows, ncol=cols)
+#for (i in seq(rows)) {
+ # for (j in seq(cols)) {
+  #  result[i,j] <- sum(m[i,j])
+  #}
+
+
+result
+
 ```
-
-You can also embed plots, for example:
-
-```{r, echo=FALSE}
-plot(cars)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
