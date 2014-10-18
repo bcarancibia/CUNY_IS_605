@@ -22,21 +22,12 @@ rows <- dim(m)[1]
 cols <- dim(m)[2]
 
 sd_array <- function(array){
-  for (i in seq(rows)) {
-    for (j in seq(cols)){
-      result[i,j] <- mean(((mean(m))-[i,j])^2)
-    }
-  }
+  sqrt(var(array))
 }
 
+sd_array(m)
+sd(m)
 
-#result <- matrix(0, nrow=rows, ncol=cols)
-#for (i in seq(rows)) {
- # for (j in seq(cols)) {
-  #  result[i,j] <- sum(m[i,j])
-  #}
-
-
-result
+#result
 
 ```
