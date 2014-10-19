@@ -17,17 +17,57 @@ expected_value <- function(array){
 }
 expected_value(m)
 mean(m)
+```
 
-rows <- dim(m)[1]
-cols <- dim(m)[2]
+Standard deviation = $Variance(x)$^$(1/2)$
+```{r}
+var_array <- var(m)
+var_array
 
-sd_array <- function(array){
-  sqrt(var(array))
-}
+sd_array <- sqrt(var_array)
 
-sd_array(m)
+fixed_sd <- sd_array[!is.nan(sd_array)]
+
+sd_m <- sqrt(fixed_sd)
+sd_m
 sd(m)
 
-#result
+```
+
+__*Part 2*__
+
+Infinite stream of numbers coming by and need to calculate the mean and standard deviation of the numbers. I would do this by just adding to the pervious average and dividing it by n+1.
+
+```{r}
+starting_array <- array(runif(100),dim=c(10,10))
+mean(starting_array)
+
+infinite_average <- function(x,n){
+  (mean(starting_array)*x)/(n+1)  
+  return(infinite_average)
+}
+
+infinite_average
+
+infinite_variance <- function(x){
+  sqrt(x-infinite_average)
+  return(infinite_variance)
+}
+
+infinite_variance
+
+infinite_sd <- function(infinite_variance){
+  sqrt(infinite_variance)
+  return(infinite_sd)
+}
+
+infinite_sd
 
 ```
+
+
+**Note**
+
+I had a lot of issues with this homework. One of the main issues I had was I upgraded my local environment to the new OS and somehow I cannot get my TeX package to be recognized by R and print out the PDF. The HTML works fine, but I cannot get PDF. Not sure why and this is just threw me off the entire homework.
+
+After some research found this issue: https://support.rstudio.com/hc/communities/public/questions/201688563-Problem-with-Mac-Yosemite-Beta-and-RStudio-not-finding-TeX-distribution
