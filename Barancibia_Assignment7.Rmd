@@ -2,7 +2,7 @@
 title: "Week 7 Problem Set"
 author: "Ben Arancibia"
 date: "October 18, 2014"
-output: html_document
+output: pdf_document
 ---
 
 __**Problem Set 1**__
@@ -71,3 +71,7 @@ infinite_sd
 I had a lot of issues with this homework. One of the main issues I had was I upgraded my local environment to the new OS and somehow I cannot get my TeX package to be recognized by R and print out the PDF. The HTML works fine, but I cannot get PDF. Not sure why and this is just threw me off the entire homework.
 
 After some research found this issue: https://support.rstudio.com/hc/communities/public/questions/201688563-Problem-with-Mac-Yosemite-Beta-and-RStudio-not-finding-TeX-distribution
+
+REALLY REALLLY DIRTY/HACKY Fix:
+
+sudo ln -s /usr/texbin/pdflatex /usr/bin/
