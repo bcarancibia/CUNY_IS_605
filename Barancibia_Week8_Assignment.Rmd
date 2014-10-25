@@ -27,7 +27,11 @@ $0.3571$
 __**Problem Set 2**__
 What happens to the probability of Difficulty of Course when you present the evidence that the received recommendation letter was good?
 
+
 ```{r}
+
+##FUTURE REFERENCE for gRain: http://www.bioconductor.org/packages/release/bioc/html/RBGL.html##
+
 library(gRain)
 yes_no <- c("yes", "no")
 high_low <- c("high", "low")
@@ -53,10 +57,18 @@ p_var$difficulty
 
 p_var$difficult seems to have worked, which is just probability.
 
+A course seems to be more difficult given that a high recommendation letter was given. (0.84 > 0.7)
 ```{r}
 bay_network_LH <- setFinding(bay_network, nodes="letter", states="high")
 #query grain time
 querygrain(bay_network_LH, nodes=c("letter", "difficulty"))$difficulty
+```
 
+Seems that a course was difficult given a high SAT Score and a high recommendation, than just a high recommendation alone. (0.86 > 0.84)
+
+```{r}
+bay_network_LHSH <- setFinding(bay_network, nodes=c("sat", "letter"), states=c("high", "high"))
+#query grain time
+querygrain(bay_network_LHSH, nodes=c("letter", "sat", "difficulty"), type="marginal")$difficulty
 ```
 
