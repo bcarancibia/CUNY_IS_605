@@ -1,0 +1,62 @@
+---
+title: "Assignment 8"
+author: "Ben Arancibia"
+date: "October 25, 2014"
+output: pdf_document
+---
+
+__**Problem Set 1**__
+
+Probability of $(A|B)$ is equal to $PR(B|A)$*$PR(A)$ / $PR(B)$.
+
+So $PR(B)$ = ((.9x10) + (.5x10))/20
+
+14/20 = $0.7$
+
+$PR(B|A)$ = 0.5
+
+$PR(A)$ = 0.5
+
+$PR(A|B)$ = (0.5 x 0.5)/(0.7)
+
+(0.25)/(0.7)
+
+__final result:__
+$0.3571$
+
+__**Problem Set 2**__
+What happens to the probability of Difficulty of Course when you present the evidence that the received recommendation letter was good?
+
+```{r}
+library(gRain)
+yes_no <- c("yes", "no")
+high_low <- c("high", "low")
+
+#percents from variables 
+diff <- cptable(~difficulty, values=c(70, 30), levels=yes_no)
+intell <- cptable(~intelligence, values=c(20, 80), levels=high_low)
+
+grade_intell_diff <- cptable(~grade|intelligence:difficulty, 
+                             values=c(90, 10, 99, 1, 20, 80, 40, 60), levels=high_low)
+
+sat_intell <- cptable(~sat|intelligence, values=c(80, 20, 10, 90), levels=high_low)
+letter_grade <- cptable(~letter|grade, values=c(95, 5, 10, 90), levels=high_low)
+
+p_var <- compileCPT(list(diff, intell, grade_intell_diff, sat_intell, letter_grade))
+
+#create bayesian network
+bay_network <- grain(p_var)
+
+p_var$difficulty
+
+```
+
+p_var$difficult seems to have worked, which is just probability.
+
+```{r}
+bay_network_LH <- setFinding(bay_network, nodes="letter", states="high")
+#query grain time
+querygrain(bay_network_LH, nodes=c("letter", "difficulty"))$difficulty
+
+```
+
