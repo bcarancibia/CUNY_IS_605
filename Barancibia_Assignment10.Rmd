@@ -1,0 +1,54 @@
+---
+title: "Week 10 Assignment"
+author: "Ben Arancibia"
+date: "November 7, 2014"
+output: pdf_document
+---
+**Playing with PageRank**
+
+**Bullet 1**
+
+Form the $A$ Matrix.
+
+```{r}
+A <- matrix(c(0, 0, .33, 0, 0, 0, .5, 0, .33, 0, 0, 0, .5, 0, 0, 0 ,0 ,0, 0, 0, 0, 0, 
+              .5, 1, 0, 0, .33, .5, 0 ,0, 0, 0, 0, .5, .5, 0), nrow=6,ncol=6)
+
+A
+
+
+```
+
+Introduce Decay and form the B Matrix.
+
+```{r}
+n <- 6 #chose 6 because there are 6 pages in the notes
+B = 0.85*A+(0.15/n)
+
+B
+```
+
+**Bullet 2**
+
+Start uniform rank r and perform power iterations on B til convergence.
+```{r}
+r <- matrix(c(.167, .167, .167, .167, .167, .167), nrow=6, ncol=1)
+r
+
+r_solve1 = (B^10)%*%r
+r_solve2 = (B^100)%*%r
+r_solve3 = (B^1000)%*%r
+
+```
+
+**Bullet 3**
+
+
+
+
+
+
+
+
+```
+
