@@ -42,13 +42,33 @@ r_solve3 = (B^1000)%*%r
 ```
 
 **Bullet 3**
+Compute the Eigendecomposition of B. Found this website to be able to do it: https://stat.ethz.ch/R-manual/R-devel/library/base/html/eigen.html
+
+```{r}
+e_decomp <- eigen(B)
+
+e_decomp
+```
 
 
+**Bullet 4**
+```{r}
+require(igraph)
+```
 
+Use the graph package in R and its page.rank method to compute the Page Rank of the graph as given in A.
 
-
-
+```{r}
+A
+net = graph.adjacency(A, mode="directed")
+A_page_rank = page.rank(net, directed=TRUE)$vector
 
 
 ```
+
+
+
+
+
+
 
