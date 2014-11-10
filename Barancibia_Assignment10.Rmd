@@ -56,7 +56,7 @@ e_decomp
 require(igraph)
 ```
 
-Use the graph package in R and its page.rank method to compute the Page Rank of the graph as given in A.
+Use the graph package in R and its page.rank method to compute the Page Rank of the graph as given in A. Documents for igraph for future reference: http://igraph.org/r/doc/igraph.pdf
 
 ```{r}
 A
