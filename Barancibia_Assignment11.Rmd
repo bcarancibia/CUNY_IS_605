@@ -1,0 +1,41 @@
+---
+title: "Week 11 Assignment"
+author: "Ben Arancibia"
+date: "November 15, 2014"
+output: pdf_document
+---
+
+Using the lm function, perform regression analysis and measure independent variables on two datasets.
+
+__**First Data Set**__
+The first data set is heart rate.
+First create the data set.
+```{r}
+x = c(18,23,25,35,65,54,34,56,72,19,23,42,18,39,37)
+y = c(202,186,187,180,156,169,174,172,153,199,193,174,198,183,178) 
+```
+
+Plot x and y with regression line and basic values of regression analysis
+```{r}
+plot(x,y)
+lm_age = lm(y ~ x)
+lm_age
+abline(lm_age)
+summary(lm_age)
+
+
+```
+
+Find that the resulting equation is more like this:
+
+$MaxHR = -0.7977 + 210.0485$ 
+
+As you can see in summary(lm_age) you have a hypothesis test calculated by R.
+```{r}
+summary(lm_age)
+```
+It does not look like it is significant. 
+
+__**Auto Data Set**__
+
+
