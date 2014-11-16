@@ -23,7 +23,6 @@ lm_age
 abline(lm_age)
 summary(lm_age)
 
-
 ```
 
 Find that the resulting equation is more like this:
@@ -36,6 +35,86 @@ summary(lm_age)
 ```
 It does not look like it is significant. 
 
+```{r}
+es = residuals(lm_age)
+b1 = (coef(lm_age))[['x']]
+s = sqrt(sum(es^2) / (13)) #plugging in n-2 instead of 13 gives me an error
+SE = s/sqrt(sum((x-mean(x))^2))
+t = (b1 - (-1))/SE
+pt(t, 13, lower.tail=FALSE)
+
+```
+
+Not significiant.
+
 __**Auto Data Set**__
 
+Perform a linear regression analysis using mpg as the dependent variable and the other 4 as independent variables.
+First import the data.
 
+```{r}
+data <- read.table("/Users/bcarancibia/CUNY_IS_605/assign11/auto-mpg.data")
+names(data) <- c("displacement", "horsepower", "weight", "acceleration", "mpg")
+```
+
+Based on the first take a random 40 points from the data set.
+```{r}
+sub_new <- data[1:40,]
+```
+
+Plot mpg vs the four other variables for the subset.
+```{r}
+pairs(sub_new)
+auto_sub <- lm(sub_new$mpg ~ sub_new$displacement + sub_new$horsepower+ sub_new$weight +
+                 sub_new$acceleration, data=sub_new)
+
+auto_sub
+
+layout(matrix(c(1,2,3,4),2,2))
+plot(auto_sub)
+summary(auto_sub)
+```
+
+The final regression fit looks to be:
+
+
+has a sifnifcant impact on mpg
+
+The corresponding significance levels are:
+
+Standard errors for each of the coefficients:
+
+
+
+Plot mpg vs the four other variables.
+```{r}
+
+pairs(data)
+
+auto <- lm(data$mpg ~ data$displacement + data$horsepower 
+           + data$weight+ data$acceleration, data=data)
+
+auto
+
+layout(matrix(c(1,2,3,4),2,2))
+plot(auto)
+
+summary(auto)
+
+```
+
+The final regression fit looks to be:
+
+
+has a sifnifcant impact on mpg
+
+The corresponding significance levels are:
+
+Standard errors for each of the coefficients:
+
+
+Do it using 95% confidence intervals.
+
+```{r}
+
+```
