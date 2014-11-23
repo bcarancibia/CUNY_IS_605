@@ -7,13 +7,91 @@ output: pdf_document
 
 __**Question 1**__
 
-Write a program to computer the derivative of $f(x) = x^3 + 2x^2$. The function should take in a value of x and return back an approximation to the derivate of f(x) evaluated at the value.
+Write a program to compute the derivative of $f(x) = x^3 + 2x^2$. The function should take in a value of x and return back an approximation to the derivate of f(x) evaluated at the value.
 
 ```{r}
-question1 <- function(x){
-  ((x^3) + 2*x^2)
-}
+invisible(library(mosaic))
 
-derivative1 <- function(x){}
-body(derivate1) <- D(body(derivative1), 'x')
+f1 <- D(x^3 + 2*x^2 ~ x)
+
+#as example can solve for any value
+f1(x=2)
+
 ```
+
+__**Question 2**__
+
+Now write a program to compute the area under the curve for the function $2X^2 + 4x$ in the range $x$ = [1,3].
+
+```{r}
+library(zoo)
+
+f2 <- function(x) (2*x^2 + 4*x)
+xs <- seq(1, 3, by = 0.000006)
+plot(xs, f2(xs), type= "l")
+
+
+x <- 1:3
+y <- 2*x^2 + 4*x
+id <- order(x)
+AUC <- sum(diff(x[id])*rollmean(y[id],2))
+
+AUC
+
+```
+
+
+__**Question 3**__
+
+**Integration by parts to solve for $$\int sin(x)cos(x)\, dx$$**
+
+$$=1/2 sin2x$$
+
+$$\int 1/2 sin2x\, dx $$
+
+final answer: $$-1/2 cos^2(x) + C$$
+
+
+**Integration by parts to solve for $$\int x^2e^x\, dx$$**
+
+$$ u dv = uv - integral(v du)$$
+
+u = x^2 
+du = 2x dx
+dv = e^x dx
+v = e^x
+
+$$x^2 * e^x - integral(2x * e^x dx)$$
+
+We have to do it again
+
+u = x
+du = dx
+dv = e^x dx
+v = e^x
+
+$$x^2 * e^x - 2[x*e^x - integral(e^x dx)]$$
+
+Simplify:
+
+$$x^2 * e^x - 2x*e^x + 2*integral(e^x dx) $$
+
+
+$$x^2*e^x - 2x*e^x + 2*e^x + C$$
+
+Factor out: e^x
+
+
+Final Answer: $$e^x [x^2 - 2x + 2] + C$$
+
+
+**What is the derivative of $$xcos(x)$$**
+
+
+Final Answer: $$cos(x)-xsin(x)$$
+
+
+
+
+
+
