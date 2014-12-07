@@ -1,0 +1,45 @@
+---
+title: "Assignment Week 14"
+author: "Ben Arancibia"
+date: "December 7, 2014"
+output: pdf_document
+---
+
+Taylor Series Approximation is an attempt to approximate a function in terms of other functions that are easier to calculate. Taylor Series is used to represent functions as an infinte sum of polynominal terms that are calculated using a function's derivatives evaluated at a single point.
+
+```{r}
+require(pracma)
+```
+
+For the function $f(x) = 1/(1 - x)$ the Taylor Series expansion is: $1+x+x^2+x^3+O$. This can be written as the sum of $x^n$.
+
+```{r}
+f <- function(x) 1/(1 - x)
+p <- taylor(f, -1, 4)
+polyval(p, -1:1)
+
+```
+
+For the function $f(x) = e^x$ the Taylor Series Expansion is $1+x+(x^2)/2!+(x^3)/3!+(x^4)/4!+O$ this can be written as the sum of $(x^n)/n!$.
+
+
+For the function $f(x) = ln(1+x) the Taylor Series Expansion is $x-(x^3)/3!+(x^5)/5!-(x^7)/7!$ this cna be written as the sum of $((-1)^n+1)*((x^n)/n)$.
+
+```{r}
+f3 <- function(x) log(1+x)
+p3 <- taylor(f3, 1, 4)
+polyval(p3, -1:1)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
