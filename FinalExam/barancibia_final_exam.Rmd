@@ -9,3 +9,98 @@ This final exam consists of three parts. The three parts are 1) Essential Concep
 
 __**Essential Concepts**__
 
+**1) What is the rank (number of lineraly indepdent rows) of the following matrix:**
+
+```{r, echo=FALSE}
+q1 = matrix(c(-1, 2, 6, 1, -1, -10, 3, 5, -1, 5, 7, 3), nrow=3, ncol=4)
+q1
+```
+
+First step is multiply first row by -2, results in the following matrix:
+```{r, echo=FALSE}
+q1.1 = matrix(c(2, 2, 6, -2, -1, -10, -6, 5, -1, -10, 7, 3), nrow=3, ncol=4)
+q1.1
+```
+
+Second step is subtract first row from second row:
+```{r, echo=FALSE}
+q1.2 = matrix(c(1, 0, 6, -1, 1, -10, -3, 11, -1, -5, 17, 3), nrow=3, ncol=4)
+q1.2
+```
+
+Third step multiply row 1 by 6 then subtract first row from third row.
+
+```{r, echo=FALSE}
+q1.3 = matrix(c(1, 0, 0, -1, 1, -4, -3, 11, 17, -5, 17, 33), nrow=3, ncol=4)
+q1.3
+```
+
+Fourth step multiply row 1 by -1 and then second row by -4.
+
+```{r, echo=FALSE}
+q1.4 = matrix(c(-1, 0, 0, 1, -4, -4, 3, -44, 17, 5, 68, 33), nrow=3, ncol=4)
+q1.4
+```
+
+Last step subtract second row from third row.
+
+```{r, echo=FALSE}
+q1.5 = matrix(c(-1, 0, 0, 1, 1, 0, 3, 11, 61, 5, 17, 101), nrow=3, ncol=4)
+q1.5
+```
+
+The matrix rank is 3. All rows are linearly indepdent.
+
+**2) What is the determinant of the following matrix:**
+
+```{r, echo=FALSE}
+q1 = matrix(c(-1, 2, 6, 1, -1, -10, 3, 5, -1, 5, 7, 3), nrow=3, ncol=4)
+q1
+```
+
+It is not possible to calculate the determinant of the matrix because it is not a square matrix.
+
+**3)Define orthonormal basis vectors. Please write down at least one orthonormal basis for the 5-dimensional vector space R5.**
+
+An Orthonormal Basis vector is when a orthogonal vector divided by its length = 1. An orthogonal vector is when $$q1,...,qn$$ have dot products equal to zero ($$qi * qj$$). Divide each vector by its length and the vectors become orthogonal unit vectors. The lengths are one.
+
+A five dimenial orthonormal basis is the following:
+
+```{r, echo=FALSE}
+q3 = matrix(c(1, 0, 0, 0, 0, 
+              0, 1, 0, 0, 0, 
+              0, 0, 1, 0, 0,
+              0, 0, 0, 1, 0,
+              0, 0, 0, 0, 1), nrow=5, ncol=5)
+q3
+```
+
+(this is just the standard basis)
+
+**4)Given the following matrix, what is its characteristic polynomial?**
+```{r, echo=FALSE}
+q4 = matrix(c(2, -1, 1, -1, -2, 0, 4, 6, -3), nrow=3, ncol=3)
+q4
+```
+
+Characteristic polynomial of a square matrix is a polynomial, which is invariant under matrix similarity and has the eigenvalues as roots. 
+
+$$det(A - XI)$$
+```{r}
+q4.1 = matrix(c(NA, -1, 1, -1, NA, 0, 4, 6, NA), nrow=3, ncol=3) # NA = X in this matrix
+q4.1
+```
+
+
+Characteristic Polynomial = $$-x^3 - 3x^2 + 9x +17$$
+
+**5) What are its eigenvectors and eigenvalues of the following matrix?**
+```{r, echo=FALSE}
+q4 = matrix(c(2, -1, 1, -1, -2, 0, 4, 6, -3), nrow=3, ncol=3)
+q4
+```
+
+Characteris Polynomial = $$-x^3 - 3x^2 + 9x +17$$
+
+
+
