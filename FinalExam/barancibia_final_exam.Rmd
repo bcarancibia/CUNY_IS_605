@@ -113,6 +113,26 @@ x3: (0.16 , 1 , 0.11)
 
 **6)When would a model be said to have a high bias and when would it be said to have a high variance?**
 
+Non-linear modules such as polynominal fits will have a low bias because they are able to go arbitraily close to fi; however, they introduce a higher variance in the model as they may not fit any particular instance of the underlying data well. When there is a high variance but low bias, the model is referred to as overfitting, when there is a model of high bias but low variance, the model is known as underfitting. This is all part of the bias variance trade-off. Models with high bias tend to have low variance and models with high variance tend to have low bias.
+
+**7)Assuming that we are repeatedly sampling sets of numbers (each set is of size n) from an unknown probability density function. What can we say about the average value of each set?**
+
+Assuming that we are repeatedly sampling sets of numbers from an unknown probability density function dependson the type of random variable. Either for a continous or discrete random varibale the expect value of random variables states the average responses that should be obtained. The expected value of of PMF (discrete) can be calculated as the Sum of $$P(x==i)*i)$$. If the variable is a continouse random variable you can calculte the entire PDF with Integral of $$xp(x)dx$$.
+
+**8)What is the derivative of e^2xcos^2(x)**
+
+Take constant out so becomes: $$e^2 d/dx(xcos^2(x))$$
+
+Product rule: $$e^2((x)cos^2(x) + (cos^2(x))x)$$
+
+Results in $$e^2(1cos^2(x) + (-2cos(x)sin(x))x)$$
+
+Simplfy: $$e^2cos(x)(cos(x) - 2xsin(x))$$
+
+**9)What is the derivative of log(sin(2x))?**
+
+
+
 
 
 
