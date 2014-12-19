@@ -158,14 +158,80 @@ Result: $$\pi - 2$$
 
 __**Mini Coding**__
 
+2.1 Bayes Rule:
 
+**Working for a credit card company and 70% of customers have a good credit score. People with good credit have a loan default rate of 0.05. People with bad credit default on their loads at the rate of .10.**
+```{r}
+PRB <- (((.10*.30)+(.05*.30))/.7)
+PRBA <- .10
+PRA <- 0.5
 
+PAB <- (PRBA*PRA)/PRB
 
+PAB
 
+```
 
+**Supose there are two full bowls of cookies. Bowl 1 has 5 chocolate chip and 35 oatmeal raisin cookies. Bowl 2 has 20 of each. Fred picks a bowl at random and then picks a cookie at random. Cookie is chocolate chip, how probable is it that Fred pick it out of bowl 2.**
 
+```{r}
+PRB2 <- (((0.125*20)+(0.5*20))/40)
+PRBA2 <- .5
+PRA2 <- .125
+PAB2 <- ((PRBA2*PRA2)/PRB2) 
 
+PAB2 *.05 #multipled by .5 because Fred has to select 1 of 2 bowls
 
+```
 
+2.2 Central Limit Theorem
 
+**Assume a sample of size of 100 with mean of 50 and standard deviation 10. What is mean of sample and standard error?**
+
+```{r}
+x=rlnorm(100, log(50), log(10))
+
+mean(x)
+
+se <- sd(x)/sqrt(length(x))
+
+se
+```
+
+**Random sample of 100 observations with a mean of 40 and standard deviation of 25.**
+
+```{r}
+x=rnorm(100,mean=40,sd=25)
+
+mean(x)
+
+sd(x)
+```
+
+**Random sample of 100 obserations mean of 40 and standard deviation of 25. What is the probability that the mean of the sample will exceed 45?**
+
+```{r}
+x=rnorm(100,mean=40,sd=25)
+
+y=mean(x)
+
+1-pnorm(y, 40, 25)
+
+```
+
+2.3 Sample from function.
+
+First create a binominal distribution to samepl p = 0.1, q =1-p and x[0,10]
+
+```{r}
+rbinom(1, 10, .1)
+```
+
+Generate 1000 samples using this and plot a histogram.
+
+```{r}
+barplot(table(rbinom(1000,10,.1)))
+```
+
+2.4 Principal Components Analysis
 
