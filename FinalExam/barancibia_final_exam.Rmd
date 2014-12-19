@@ -96,11 +96,27 @@ Characteristic Polynomial = $$-x^3 - 3x^2 + 9x +17$$
 
 **5) What are its eigenvectors and eigenvalues of the following matrix?**
 ```{r, echo=FALSE}
-q4 = matrix(c(2, -1, 1, -1, -2, 0, 4, 6, -3), nrow=3, ncol=3)
-q4
+q5 = matrix(c(2, -1, 1, -1, -2, 0, 4, 6, -3), nrow=3, ncol=3)
+q5
 ```
 
-Characteris Polynomial = $$-x^3 - 3x^2 + 9x +17$$
+Characteristic Polynomial = $$-x^3 - 3x^2 + 9x +17$$ derived from question 4. Find the roots for the characterisitic polynominal.
+
+Eigenvalue of x1 (2-x) = 2.691
+Eigenvalue of x2 (-2-x) = -4.18
+Eigenvalue of x3 (-3-x) = -1.511
+
+With those values if you plug them in the following are the results eigenvectors:
+x1: (86.43 , 1 , 15.18)
+x2: (0.36 , 1 , -0.30)
+x3: (0.16 , 1 , 0.11)
+
+**6)When would a model be said to have a high bias and when would it be said to have a high variance?**
+
+
+
+
+
 
 
 
