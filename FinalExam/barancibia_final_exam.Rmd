@@ -235,3 +235,50 @@ barplot(table(rbinom(1000,10,.1)))
 
 2.4 Principal Components Analysis
 
+Perform a principal components analysis by performing an SVD on 4 independent variables (mpg is dependent variable) and select top 2 directions. Create a scatter plot of the data and print out the two orthogonal vectors.
+
+```{r}
+library(car)
+data <- read.table("/Users/bcarancibia/CUNY_IS_605/FinalExam/auto-mpg.data")
+names(data) <- c("displacement", "horsepower", "weight", "acceleration", "mpg")
+
+
+scatterplotMatrix(data) #take a look at the data first
+
+standard <- as.data.frame(scale(data))
+car.pca <- prcomp(standard)
+summary(car.pca)
+car.pca$sdev
+screeplot(car.pca, type ="lines")
+
+car.pca$rotation[,1]
+car.pca$rotation[,2]
+
+plot(car.pca$x[,1],car.pca$x[,2])
+
+```
+
+2.5
+```{r}
+library(boot)
+data = c(8,10,7,12,13,8,10,50)
+mean_data = function(x,indices){
+  return(mean(x[indices]))
+}
+boot.out = boot(data, mean_data,1000000)
+boot.ci(boot.out)
+
+
+```
+
+We see the resulting confidence intervals: 
+
+Normal center is 14.74 and range is 18.66
+Basic center is 12.57 and range is 16.63
+Percentile center is 16.94 and range is 16.63
+BCa center is 19.81 and range is 21.38
+
+As seen from the results of the bootstrapping sample, the range is the same on basic and percentile confidence intervals. 
+
+
+__**Mini Project**__
