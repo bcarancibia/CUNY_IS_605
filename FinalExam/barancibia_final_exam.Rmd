@@ -131,6 +131,35 @@ Simplfy: $$e^2cos(x)(cos(x) - 2xsin(x))$$
 
 **9)What is the derivative of log(sin(2x))?**
 
+Apply log rule which is $$Log(b) = -ln(b) / ln(a)$$
+
+Result: $$ln(sin(2x))/ln(10)$$
+
+**10) What is the integral of $$x^2sin(x)dx$$?**
+
+Integration by parts: = $$x^2(-cos(x)) - \int 2x(-cos(x))$$
+
+$$=x^2(-cos(x)) - \int 2xcos(x))$$
+
+$$\int -2xcos(x) = -2(xsin(x) + cos(x))$$
+
+$$= x^2(-cos(x) - (-2(xsin(x) + cos(x))))$$
+
+Simplified Integral: $$2(xsin(x) + cos(x)) - x^2cos(x) + C$$
+
+Compute with boundaries: $$(0,\pi/2)$$
+
+$$(0): 2(xsin(0) + cos(0)) - x^2cos(0) = 2$$
+
+$$(\pi/2): 2(xsin(\pi/2) + cos(\pi/2)) - x^2cos(\pi/2) = \pi$$
+
+Result: $$\pi - 2$$
+
+
+__**Mini Coding**__
+
+
+
 
 
 
