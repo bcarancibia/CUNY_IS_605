@@ -282,3 +282,242 @@ As seen from the results of the bootstrapping sample, the range is the same on b
 
 
 __**Mini Project**__
+
+The first step in this miniproject is to load in the data.
+
+```{r}
+xdata <- as.matrix(read.table("/Users/bcarancibia/CUNY_IS_605/FinalExam/mini-project-data/ex3x.dat", header=TRUE))
+y <- as.matrix(read.table("/Users/bcarancibia/CUNY_IS_605/FinalExam/mini-project-data/ex3y.dat", header=TRUE))
+
+names(xdata) <- c("square feet", "number bedrooms")
+names(y) <- c("price of house")
+
+iterations=5000
+
+#standardize the x
+
+standard_function <- function(x, mean.val=NA) {
+  if(is.matrix(x)) return(apply(x, 2, standard_function, mean.val=mean.val))
+	if(is.data.frame(x)) return(data.frame(apply(x, 2, standard_function, mean.val=mean.val)))
+	if(is.na(mean.val)) mean.val <- mean(x)
+	sd.val <- sd(x)
+	if(all(sd.val == 0)) return(x) # if all the values are the same
+	(x - mean.val) / sd.val 
+}
+
+x_scaled <- standard_function(xdata)
+
+```
+
+Add dummy variable to the and then perform gradient descent. First is alpha = 0.001
+
+```{r}
+x_scaled <- cbind(1,x_scaled)
+x <- x_scaled
+names(x) <- c("dummy","square feet", "number bedrooms")
+
+
+cost <- function(x, y, theta) {
+  sum((x %*% theta - y)^2 ) / (2*length(y))
+}
+
+alpha <- 0.001
+num_iters <- 5000
+
+cost_history <- double(num_iters)
+theta_history <- list(num_iters)
+
+theta <- matrix(c(0,0,0), nrow=3)
+
+for (i in 1:num_iters) {
+  error <- (x %*% theta - y)
+  delta <- t(x) %*% error / length(y)
+  theta <- theta - alpha * delta
+  cost_history[i] <- cost(x, y, theta)
+  theta_history[[i]] <- theta
+}
+
+print(theta)
+
+
+```
+
+
+```{r}
+xdata <- as.matrix(read.table("/Users/bcarancibia/CUNY_IS_605/FinalExam/mini-project-data/ex3x.dat", header=TRUE))
+y <- as.matrix(read.table("/Users/bcarancibia/CUNY_IS_605/FinalExam/mini-project-data/ex3y.dat", header=TRUE))
+
+names(xdata) <- c("square feet", "number bedrooms")
+names(y) <- c("price of house")
+
+iterations=5000
+
+#standardize the x
+
+standard_function <- function(x, mean.val=NA) {
+  if(is.matrix(x)) return(apply(x, 2, standard_function, mean.val=mean.val))
+  if(is.data.frame(x)) return(data.frame(apply(x, 2, standard_function, mean.val=mean.val)))
+	if(is.na(mean.val)) mean.val <- mean(x)
+	sd.val <- sd(x)
+	if(all(sd.val == 0)) return(x) # if all the values are the same
+	(x - mean.val) / sd.val 
+}
+
+x_scaled <- standard_function(xdata)
+
+```
+
+Add dummy variable to the and then perform gradient descent. First is alpha = 0.001
+
+```{r}
+x_scaled <- cbind(1,x_scaled)
+x <- x_scaled
+names(x) <- c("dummy","square feet", "number bedrooms")
+
+
+cost <- function(x, y, theta) {
+  sum((x %*% theta - y)^2 ) / (2*length(y))
+}
+
+alpha <- 0.001
+num_iters <- 5000
+
+cost_history <- double(num_iters)
+theta_history <- list(num_iters)
+
+theta <- matrix(c(0,0,0), nrow=3)
+
+for (i in 1:num_iters) {
+  error <- (x %*% theta - y)
+  delta <- t(x) %*% error / length(y)
+  theta <- theta - alpha * delta
+  cost_history[i] <- cost(x, y, theta)
+  theta_history[[i]] <- theta
+}
+
+print(theta)
+
+
+```
+
+Alpha = 0.01
+```{r}
+cost <- function(x, y, theta) {
+  sum((x %*% theta - y)^2 ) / (2*length(y))
+}
+
+alpha <- 0.01
+num_iters <- 5000
+
+cost_history <- double(num_iters)
+theta_history <- list(num_iters)
+
+theta <- matrix(c(0,0,0), nrow=3)
+
+for (i in 1:num_iters) {
+  error <- (x %*% theta - y)
+  delta <- t(x) %*% error / length(y)
+  theta <- theta - alpha * delta
+  cost_history[i] <- cost(x, y, theta)
+  theta_history[[i]] <- theta
+}
+
+print(theta)
+
+
+```
+
+Alpha = .1
+
+```{r}
+cost <- function(x, y, theta) {
+  sum((x %*% theta - y)^2 ) / (2*length(y))
+}
+
+alpha <- 0.1
+num_iters <- 5000
+
+cost_history <- double(num_iters)
+theta_history <- list(num_iters)
+
+theta <- matrix(c(0,0,0), nrow=3)
+
+for (i in 1:num_iters) {
+  error <- (x %*% theta - y)
+  delta <- t(x) %*% error / length(y)
+  theta <- theta - alpha * delta
+  cost_history[i] <- cost(x, y, theta)
+  theta_history[[i]] <- theta
+}
+
+print(theta)
+
+
+```
+
+Alpha = 1
+
+```{r}
+cost <- function(x, y, theta) {
+  sum((x %*% theta - y)^2 ) / (2*length(y))
+}
+
+alpha <- 1
+num_iters <- 5000
+
+cost_history <- double(num_iters)
+theta_history <- list(num_iters)
+
+theta <- matrix(c(0,0,0), nrow=3)
+
+for (i in 1:num_iters) {
+  error <- (x %*% theta - y)
+  delta <- t(x) %*% error / length(y)
+  theta <- theta - alpha * delta
+  cost_history[i] <- cost(x, y, theta)
+  theta_history[[i]] <- theta
+}
+
+print(theta)
+
+
+```
+
+
+
+Do a regular linear regression.
+
+```{r}
+xlr <- read.table("/Users/bcarancibia/CUNY_IS_605/FinalExam/mini-project-data/ex3x.dat", header=TRUE)
+ylr <- read.table("/Users/bcarancibia/CUNY_IS_605/FinalExam/mini-project-data/ex3y.dat", header=TRUE)
+
+names(xlr) <- c("square_feet", "number_bedrooms")
+names(ylr) <- c("price_house")
+
+
+linear_regression <- lm(ylr$price_house ~ xlr$square_feet + xlr$number_bedrooms)
+linear_regression
+
+layout(matrix(c(1,2,3,4),2,2))
+
+plot(linear_regression)
+
+```
+
+Ordinary Least Squares Model
+
+```{r}
+
+xols <- read.table("/Users/bcarancibia/CUNY_IS_605/FinalExam/mini-project-data/ex3x.dat", header=TRUE)
+yols <- read.table("/Users/bcarancibia/CUNY_IS_605/FinalExam/mini-project-data/ex3y.dat", header=TRUE)
+
+names(xols) <- c("square_feet", "number_bedrooms")
+names(yols) <- c("price_house")
+
+ols_model <- lm(formula = yols$price_house~xols$square_feet+xols$number_bedrooms)
+
+ols_model
+
+layout(matrix(c(1,2,3,4),2,2))
+plot(ols_model)
+```
